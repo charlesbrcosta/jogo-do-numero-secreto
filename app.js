@@ -8,6 +8,9 @@ let chute;
 function exibirNaTela(tag, texto) {
     let campo = document.querySelector( tag );
     campo.innerHTML = texto;
+    
+    //Síntese de voz - text-tospeech ( Acessibilidade ).
+    responsiveVoice.speak( texto, 'Brazilian Portuguese Female', { rate: 1.2 });
 }
 
 // Função para exibir a mensagem inicial do jogo.
