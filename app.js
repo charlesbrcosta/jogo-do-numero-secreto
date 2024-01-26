@@ -1,4 +1,5 @@
-
+let listaDeNumerosSorteados = [];
+let numeroLimite = 10;
 let numeroSecreto = gerarNumeroAleatorio(); 
 let tentativas = 1;
 let chute;
@@ -12,10 +13,10 @@ function exibirNaTela(tag, texto) {
 // Função para exibir a mensagem inicial do jogo.
 function exibirMensagemInicial() {
     exibirNaTela( 'h1', 'Jogo do número secreto' );
-    exibirNaTela( 'p', 'Escolha um número entre 1 e 10' );
+    exibirNaTela( 'p', `Escolha um número entre 1 e ${ numeroLimite }` );
 }
 
-// Exibe mensagem inicial ao carregar a página.
+// Exibe mensagem inicial ao carregar a página.  
 exibirMensagemInicial();
 limparCampo();
 
@@ -42,9 +43,26 @@ function verificarChute() {
     }
 }
 
-// Função para gerar número aleatório entre 1 e 10.
+// Função para gerar um número aleatório único dentro de um intervalo.
 function gerarNumeroAleatorio() {
-    return Math.floor(Math.random() * 10 + 1);
+    // Gera um número aleatório entre 1 e limiteMaximo, incluindo ambos.
+    let numeroEscolhido = Math.floor(Math.random() * numeroLimite + 1);
+    let quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
+
+    // Verifica se a quantidade de elementos na lista atingiu o limite desejado
+    if( quantidadeDeElementosNaLista == numeroLimite) {
+        listaDeNumerosSorteados = [];
+    }
+
+    // Verifica se o número gerado já foi escolhido anteriormente.
+    if( listaDeNumerosSorteados.includes( numeroEscolhido )) {
+        return gerarNumeroAleatorio();
+    } else {
+        // Se o número é único, adiciona à lista de números sorteados e retorna o número.
+        listaDeNumerosSorteados.push( numeroEscolhido );
+        console.log( listaDeNumerosSorteados );
+        return numeroEscolhido;
+    }
 }
 
 // Limpa campo de entrada.
