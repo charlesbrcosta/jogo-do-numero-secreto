@@ -9,7 +9,7 @@ function exibirNaTela(tag, texto) {
     let campo = document.querySelector( tag );
     campo.innerHTML = texto;
     
-    //Síntese de voz - text-tospeech ( Acessibilidade ).
+    //Síntese de voz - text-to-speech ( Acessibilidade ).
     responsiveVoice.speak( texto, 'Brazilian Portuguese Female', { rate: 1.2 });
 }
 
